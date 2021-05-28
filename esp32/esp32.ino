@@ -1,6 +1,7 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 
+
 const char* ssid = "A8+";
 const char* password = "gum089072484";
 const char* mqtt_server = "broker.netpie.io";
@@ -15,6 +16,9 @@ PubSubClient client(espClient);
 long lastMsg = 0;
 int value = 0;
 String lift = "00000";
+
+HardwareSerial uart(2);
+
 
 void reconnect() {
     while (!client.connected()) {
@@ -66,6 +70,8 @@ void callback(char* topic, byte* payload, unsigned int length) {
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
+  uart.begin(115200,SERIAL_8N1,16,17);
+  uart.setTimeout(100);
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
@@ -82,6 +88,8 @@ void setup() {
   client.setCallback(callback);
 }
 
+
+
 void loop() {
   // put your main code here, to run repeatedly:
   if (!client.connected()) {
@@ -92,8 +100,22 @@ void loop() {
   if (now - lastMsg > 2000) {
     lastMsg = now;
     ++value;
-  client.publish("@msg/test", "Hello NETPIE2020");
-  //Serial.println("Hello NETPIE2020");
+    client.publish("@msg/test", "Hello NETPIE2020");
+    Serial.println("Hello NETPIE2020");
+   
+    char test_str[32];
+    sprintf(test_str,"This is a test string.\n\r");
+    Serial.println("send");
+    Serial.println(uart.write(test_str)); 
+    
   }
+  
+  if(uart.available()){
+    String RxdChars = uart.readString();
+    Serial.print(RxdChars);
+    Serial.println("receive");
+  }
+  
+  
   delay(1);
 }
