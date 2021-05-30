@@ -48,23 +48,23 @@ void callback(char* topic, byte* payload, unsigned int length) {
         message = message + (char)payload[i];
     }
     Serial.println(message);
-    
-    if(String(topic) == "@msg/led") {
-      if(message == "on"){
-        Serial.println("led on");
-        client.publish("@shadow/data/update","{\"data\": {\"led\": true}}");
-      } else if(message == "off"){
-        Serial.println("led off");
-        client.publish("@shadow/data/update","{\"data\": {\"led\": false}}");
-      }
-      Serial.println("data in");
-    } else if(String(topic) == "@msg/floor"){
+/*    
+//    if(String(topic) == "@msg/led") {
+//      if(message == "on"){
+//        Serial.println("led on");
+//        client.publish("@shadow/data/update","{\"data\": {\"led\": true}}");
+//      } else if(message == "off"){
+//        Serial.println("led off");
+//        client.publish("@shadow/data/update","{\"data\": {\"led\": false}}");
+//      }
+//      Serial.println("data in");
+    } else */if(String(topic) == "@msg/floor"){
       Serial.println("data in");
       Serial.println(message);
       while(1){
         if(uart.available()){
           String receivedData = uart.readString();
-          Serial.print(receivedData);
+          Serial.println(receivedData);
           Serial.println("receive");
           String data = "{\"data\": "+ receivedData + "}";
           client.publish("@shadow/data/update", data.c_str());
@@ -123,12 +123,14 @@ void loop() {
 //    //Serial.println(uart.write(test_str)); 
 //  }
   
-//  if(uart.available()){
-//    String RxdChars = uart.readString();
-//    Serial.print(RxdChars);
-//    Serial.println("receive");
-//  }
-//  
+  if(uart.available()){
+    String receivedData = uart.readString();
+    Serial.println(receivedData);
+    Serial.println("receive");
+    String data = "{\"data\": "+ receivedData + "}";
+    client.publish("@shadow/data/update", data.c_str());
+  }
+  
   
   delay(1);
 }
