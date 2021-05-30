@@ -14,8 +14,8 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 
 long lastMsg = 0;
+long lastSend = 0;
 int value = 0;
-String lift = "00000";
 
 HardwareSerial uart(2);
 
@@ -60,10 +60,20 @@ void callback(char* topic, byte* payload, unsigned int length) {
       Serial.println("data in");
     } else if(String(topic) == "@msg/floor"){
       Serial.println("data in");
-      Serial.println(lift);
-      String data = "{\"data\": {\"f\": \""+ lift +"\"}}";
-      Serial.println(data);
-      client.publish("@shadow/data/update",data.c_str());
+      Serial.println(message);
+      while(1){
+        if(uart.available()){
+          String receivedData = uart.readString();
+          Serial.print(receivedData);
+          Serial.println("receive");
+          String data = "{\"data\": "+ receivedData + "}";
+          client.publish("@shadow/data/update", data.c_str());
+          break;
+        } else{
+          uart.write(message.c_str());
+          delay(10);
+        }
+      }
     }
 }
   
@@ -102,20 +112,23 @@ void loop() {
     ++value;
     client.publish("@msg/test", "Hello NETPIE2020");
     Serial.println("Hello NETPIE2020");
-   
-    char test_str[32];
-    sprintf(test_str,"This is a test string.\n\r");
-    Serial.println("send");
-    Serial.println(uart.write(test_str)); 
     
   }
+
+//  if (now - lastSend > 200){
+//    lastSend = now;
+//    char test_str[2];
+//    sprintf(test_str,"1");
+//    Serial.println("send");
+//    //Serial.println(uart.write(test_str)); 
+//  }
   
-  if(uart.available()){
-    String RxdChars = uart.readString();
-    Serial.print(RxdChars);
-    Serial.println("receive");
-  }
-  
+//  if(uart.available()){
+//    String RxdChars = uart.readString();
+//    Serial.print(RxdChars);
+//    Serial.println("receive");
+//  }
+//  
   
   delay(1);
 }
