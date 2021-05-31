@@ -1,22 +1,11 @@
 body {
     font-size: 16px;
     color: whitesmoke;
-    background-color: #180205;
+    background-color: #0b1414 ;
     font-family: 'Oxygen', sans-serif;
     padding: 4vw;
 }
-#elevator{
-  padding: 0px;
-  font-size: 5vw;
-}
-#peopleCount{
-  padding: 0;
-  font-size: 3vw;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  text-align: right;
-}
+
 .button1 {
   font-family: 'Baumans', cursive;
   font-size: 8vw;
@@ -47,12 +36,42 @@ hr{
   margin-bottom:  5vh;
   opacity: 1;
 }
+#elevator{
+  padding: 0px;
+  font-size: 5vw;
+  position: relative;
+}
+#peopleCount{
+  font-size: 3vw;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  text-align: right;
+}
 #floor{
   font-family: 'Baumans', cursive;
-  font-size: 40vw;
   background-color: #010a11;
   border: 5px solid;
+  padding: 8px;
+}
+#curFloor{
+  font-size: 30vw;
+  text-align: center;
+  vertical-align: top;
+}
+#direction{
+  font-size: 20vw;
+  align-self: center;
+  margin: 0;
+  padding: 0;
 }
 #panel{
   padding-right: 0;
+}
+#door{
+  font-family: 'Oxygen', sans-serif;
+  font-size: 20px;
+  text-align: center;
+  color:#eb9839;
 }

@@ -1,20 +1,35 @@
 const express = require('express')
-const mqtt = require('mqtt');
+//const mqtt = require('mqtt');
+var cors = require('cors');
 
-const mqtt_server = "broker.netpie.io";
-const mqtt_port = 1883;
-const mqtt_client = "46ccb5f9-2b18-4b1c-836e-7f0976c4d748";
-const mqtt_username = "Wd8QahSjWL8rg3bWXoeSvATZA3MhNf3x";
-const mqtt_password = "RKRAgOQUktN6ss0HP2kWqw81UpJWG*F9";
 
+  
+
+const corsOptions = {
+    origin: "*",
+    optionsSuccessStatus: 200,
+    allowedHeaders: ['Origin', 'X-Requested-With','Content-Type', 'Authorization'],
+};
 
 const app = express();
+
+app.use("*", cors(corsOptions));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.post('/', (req,res) => {
-    console.log('in post, reqbody= ', req.body);
+    console.log('in post, reqbody= ', req.body.floor.toString());
+    var floor = req.body.floor;
+    client.pubish("@msg/floor", floor.toString());
+    //sendFloor(floor.toString());
+    res.send('ok');
 });
 
 app.listen(3000, () => console.log('server started'))
 
+//
+
+//publish("@msg/floor","5")
 
 // var client  = mqtt.connect('mqtt://mqtt.netpie.io',{
 //     clientId: mqtt_client,

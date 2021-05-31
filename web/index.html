@@ -10,23 +10,33 @@
 	<link rel="stylesheet" href="css/styles.css">
 	<link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
   	<link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
-	  <link rel="preconnect" href="https://fonts.gstatic.com">
-	  <link href="https://fonts.googleapis.com/css2?family=Baumans&display=swap" rel="stylesheet">	
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Baumans&display=swap" rel="stylesheet">	
+	<script src="https://kit.fontawesome.com/8f7ff6901e.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
 </head>
 
 <body>
 	
 	<div class="container">
 		<div class="row" style="position: relative;">
-			<h1 id="elevator" class="col-8">Elevator 1</h1>
-			<div id="peopleCount" class="col-4">
-			</div>
+			<h1 id="elevator" class="col-8"">Elevator 1</h1>
+			<h2 id="peopleCount" class="col-4"></h2>
 		</div>
 	</div>
 	<p id="peopleCount"></p>
 	<div class="container">
 		<div class="row">
-			<div id="floor" class="d-grid gap-4 col-8 justify-content-center align-items-center"></div>
+			<div id="floor" class="col-8">
+				<div class="d-grid align-items-start justify-content-center">
+					<h1 id="door"></h1>
+					<i id="direction" class="fas"></i>
+				</div>
+				<div id="curFloor"></div>
+			</div>
 			<div id="panel"class="d-grid gap-4 col-4">
 				<button id="floor5" type="button" class="btn btn-outline button1">5</button>
 				<button id="floor4" type="button" class="btn btn-outline button1">4</button>
@@ -37,7 +47,6 @@
 		</div>
 	</div>
 	<hr>
-	<p id="deselect">Deselect</p>
 	<div id="credit">
 		<p>Created By:</p>
 			<p>Tarm Kalavantavanich #6230252121</p>
@@ -46,8 +55,7 @@
 			<p>Atiwat Deepo #6231372021</p>
 	</div>
 	<!-- jQuery (Bootstrap JS plugins depend on it) -->
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/script.js"></script>
 </body>
