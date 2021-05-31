@@ -71,7 +71,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
           break;
         } else{
           uart.write(message.c_str());
-          delay(10);
+          delay(100);
         }
       }
     }
@@ -106,14 +106,14 @@ void loop() {
     reconnect();
   }
   client.loop();
-  long now = millis();
-  if (now - lastMsg > 2000) {
-    lastMsg = now;
-    ++value;
-    client.publish("@msg/test", "Hello NETPIE2020");
-    Serial.println("Hello NETPIE2020");
-    
-  }
+//  long now = millis();
+//  if (now - lastMsg > 2000) {
+//    lastMsg = now;
+//    ++value;
+//    client.publish("@msg/test", "Hello NETPIE2020");
+//    Serial.println("Hello NETPIE2020");
+//    
+//  }
 
 //  if (now - lastSend > 200){
 //    lastSend = now;
