@@ -71,7 +71,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
           break;
         } else{
           uart.write(message.c_str());
-          delay(10);
+          delay(100);
         }
       }
     }
