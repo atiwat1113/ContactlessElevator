@@ -1,0 +1,58 @@
+body {
+    font-size: 16px;
+    color: whitesmoke;
+    background-color: #180205;
+    font-family: 'Oxygen', sans-serif;
+    padding: 4vw;
+}
+#elevator{
+  padding: 0px;
+  font-size: 5vw;
+}
+#peopleCount{
+  padding: 0;
+  font-size: 3vw;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  text-align: right;
+}
+.button1 {
+  font-family: 'Baumans', cursive;
+  font-size: 8vw;
+  color:whitesmoke;
+  border-color: #caac91;
+  border-width: 3px;
+}
+.button1:hover{
+  background-color: #caac91;
+  color: #180205;
+}
+
+.button1:focus {
+  outline: none;
+  box-shadow: none;
+}
+.active {
+  background-color: #eb9839 !important;
+  color: #121212 !important;
+  box-shadow: 0 0 20px 0px #eb983954 !important;
+}
+hr{
+  border: 0;
+  border-top: 3px solid #caac91;
+  width: 80%;
+  margin: auto;
+  margin-top: 5vh;
+  margin-bottom:  5vh;
+  opacity: 1;
+}
+#floor{
+  font-family: 'Baumans', cursive;
+  font-size: 40vw;
+  background-color: #010a11;
+  border: 5px solid;
+}
+#panel{
+  padding-right: 0;
+}
